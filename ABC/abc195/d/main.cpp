@@ -13,9 +13,9 @@ int main(int argc, const char * argv[]) {
 
     int n,m,q;
     cin>>n>>m>>q;
-    vector<ll>w(n);
-    vector<ll>v(n);
-    rep(i,n)cin>>w[i]>>v[i];
+    vector<p>wv(n);
+    rep(i,n)cin>>wv[i].first>>wv[i].second;
+    sort(wv.begin(),wv.end());
     vector<ll>x(m);
     rep(i,m)cin>>x[i];
     vector<p>lr(q);
@@ -25,11 +25,23 @@ int main(int argc, const char * argv[]) {
     }
     rep(I,q){
         vector<ll>X;
+        vector<p>WV=wv;
         for(int i=0;i<lr[I].first;i++)X.push_back(x[i]);
         for(int i=lr[I].second;i<m;i++)X.push_back(x[i]);
-        //for(auto y:X)cout<<y<<endl;
-        //cout<<endl;
-        for(int i=0;i<n;i++)
+        sort(X.begin(),X.end());
+        int ans=0;
+        for(int i=0;i<X.size();i++){
+            int max_value=0;
+            int max_j=1e9;
+            for(int j=0;j<n;j++){
+                if(X[i]>=WV[j].first){
+                    if(chmax(max_value,WV[j].second))max_j=j;
+                }
+            }
+            ans+=max_value;
+            if(max_j!=1e9)WV[max_j].first=1e9;
+        }
+        cout<<ans<<endl;
     }
 
     return 0;
