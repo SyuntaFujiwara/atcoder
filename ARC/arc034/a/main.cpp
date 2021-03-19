@@ -11,12 +11,17 @@ int main(int argc, const char * argv[]) {
     ios::sync_with_stdio(false);
     cout<<fixed<<setprecision(15);
 
-    string Name;
-    cin>>Name;
-    string emaN=Name;
-    reverse(emaN.begin(),emaN.end());
-    if(Name==emaN)cout<<"YES"<<endl;
-    else cout<<"NO"<<endl;
+    int n;
+    cin>>n;
+    vector<int>a(n);
+    vector<int>b(n);
+    vector<int>c(n);
+    vector<int>d(n);
+    vector<int>e(n);
+    rep(i,n)cin>>a[i]>>b[i]>>c[i]>>d[i]>>e[i];
+    double ans=0;
+    rep(i,n)chmax(ans,a[i]+b[i]+c[i]+d[i]+(double)e[i]*110/900);
+    cout<<ans<<endl;
 
     return 0;
 }
