@@ -11,25 +11,16 @@ int main(int argc, const char * argv[]) {
     ios::sync_with_stdio(false);
     cout<<fixed<<setprecision(15);
 
-    int n;
-    cin>>n;
-    vector<long double>Mt(n);
-    vector<long double>mt(n);
-    rep(i,n)cin>>Mt[i]>>mt[i];
-    vector<int>ans(6);
-    for(int i=0;i<n;i++){
-        if(Mt[i]>=35)ans[0]++;
-        else if(Mt[i]>=30)ans[1]++;
-        else if(Mt[i]>=25)ans[2]++;
-        if(mt[i]>=25)ans[3]++;
-        if(mt[i]<0&&Mt[i]>=0)ans[4]++;
-        if(Mt[i]<0)ans[5]++;
+    string s;
+    cin>>s;
+    string t=s;
+    reverse(t.begin(),t.end());
+    bool flag=true;
+    for(int i=0;i<s.size();i++){
+        if((s[i]!='*'&&t[i]!='*')&&s[i]!=t[i])flag=false;
     }
-    for(int i=0;i<6;i++){
-        cout<<ans[i];
-        if(i!=5)cout<<" ";
-    }
-    cout<<endl;
+    if(flag)cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
 
     return 0;
 }
